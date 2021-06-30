@@ -93,18 +93,18 @@
           </header>
           <section class="modal-card-body form-items">
             <div class="control">
-                <input class="input" type="text" placeholder="Address of Origin">
+                <input class="input" type="text" id="beginPoint" placeholder="Address of Origin">
             </div>
             <div class="control">
-                <input class="input" type="text" placeholder="Destination">
+                <input class="input" type="text" id="endPoint" placeholder="Destination">
             </div>
             <div class="control">
                 <div class="select">
-                  <select>
-                    <option>Driving</option>
-                    <option>Biking</option>
-                    <option>Public Transit</option>
-                    <option>Walking</option>
+                  <select id="mode">
+                    <option value="DRIVING">Driving</option>
+                    <option value="BICYCLING">Biking</option>
+                    <option value="TRANSIT">Public Transit</option>
+                    <option value="WALKING">Walking</option>
                   </select>
                 </div>
               </div>
@@ -126,7 +126,7 @@
 
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-primary" id="gen-button">Entertain me!</button>
+            <button class="button is-primary" id="gen-button" onclick="calcRoute();">Entertain me!</button>
             <button class="button" id="cancel-button">Cancel</button>
           </footer>
         </div>
@@ -144,7 +144,11 @@
 
 <!-- JS SCRIPT -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLqOem06RPYBA7gbjRtWp-nAcFifbYHgw&libraries=places"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script src="./assets/modal.js"></script>  
+<script src="./assets/gmaps.js"></script>  
 
 <script src="./assets/script.js"></script>  
 

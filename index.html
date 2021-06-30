@@ -3,10 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Are you not entertained?</title>
+
+    <!-- CSS SHEETS -->
+    <link href="./assets/style.css" rel="stylesheet">
+    <link href="./assets/toggle.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    
+
+    <section class="hero is-info is-medium" id="app-header">
+        <div class="hero-head">
+            <nav class="navbar">
+
+            <div class="container">
+
+                <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <i class="fas fa-theater-masks" style="font-size: 30px;"></i>
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    
+                    <span class="navbar-item">
+                        <p class="toggle-text">Dark Mode</p>  
+                    <label class="switch" id="dark-mode">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </span>                      
+                </div>
+
+            </div>
+            </nav>
+        </div>
+      
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <p class="title">
+                Commuting? Bored?
+            </p>
+            <p class="subtitle">
+              We get it. Click <strong>New Recommendation</strong> and be entertained!
+            </p>
+
+            <button class="button is-info is-inverted" id="new-button">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>New Recommendation</span>
+            </button>
+
+          </div>
+        </div>
+      
+        <div class="hero-foot">
+          <nav class="tabs is-boxed is-fullwidth">
+            <div class="container">
+                <span>Past Recommendations</span>
+              <ul>
+                <li class="is-active" id="prev-suggestions">
+                  <a>All</a>
+                </li>
+                <li>
+                  <a>Music</a>
+                </li>
+                <li>
+                  <a>Podcasts</a>
+                </li>
+                <li>
+                  <a>News & Reading</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <div class="modal is active" id="modal modal-title">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Be entertained!</p>
+            <button class="delete" aria-label="close" id="close-modal"></button>
+          </header>
+          <section class="modal-card-body form-items">
+            <div class="control">
+                <input class="input" type="text" placeholder="Address of Origin">
+            </div>
+            <div class="control">
+                <input class="input" type="text" placeholder="Destination">
+            </div>
+            <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Driving</option>
+                    <option>Biking</option>
+                    <option>Public Transit</option>
+                    <option>Walking</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Mood</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Topic</option>
+                  </select>
+                </div>
+              </div>
+
+
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-primary" id="gen-button">Entertain me!</button>
+            <button class="button" id="cancel-button">Cancel</button>
+          </footer>
+        </div>
+      </div>
+
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Entertained</strong> by <a href="https://github.com/SBerkebile7/project-1">team.length-2</a>.
+          </p>
+        </div>
+      </footer>
+
+<!-- JS SCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./assets/modal.js"></script>  
+
+<script src="./assets/script.js"></script>  
+
+
 </body>
+
 </html>

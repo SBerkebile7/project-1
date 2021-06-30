@@ -15,7 +15,7 @@
 
 <body>
 
-    <section class="hero is-info is-medium">
+    <section class="hero is-info is-medium" id="app-header">
         <div class="hero-head">
             <nav class="navbar">
 
@@ -31,7 +31,7 @@
                     
                     <span class="navbar-item">
                         <p class="toggle-text">Dark Mode</p>  
-                    <label class="switch">
+                    <label class="switch" id="dark-mode">
                         <input type="checkbox">
                         <span class="slider round"></span>
                     </label>
@@ -51,7 +51,7 @@
               We get it. Click <strong>New Recommendation</strong> and be entertained!
             </p>
 
-            <button class="button is-info is-inverted" id="new-rec">
+            <button class="button is-info is-inverted" id="new-button">
                 <span class="icon">
                     <i class="fas fa-plus"></i>
                 </span>
@@ -66,7 +66,7 @@
             <div class="container">
                 <span>Past Recommendations</span>
               <ul>
-                <li class="is-active">
+                <li class="is-active" id="prev-suggestions">
                   <a>All</a>
                 </li>
                 <li>
@@ -84,25 +84,53 @@
         </div>
       </section>
 
-      <div class="modal is active" id="modal">
+      <div class="modal is active" id="modal modal-title">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Be entertained!</p>
             <button class="delete" aria-label="close" id="close-modal"></button>
           </header>
-          <section class="modal-card-body">
-            <!-- Content ... -->
+          <section class="modal-card-body form-items">
+            <div class="control">
+                <input class="input" type="text" placeholder="Address of Origin">
+            </div>
+            <div class="control">
+                <input class="input" type="text" placeholder="Destination">
+            </div>
+            <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Driving</option>
+                    <option>Biking</option>
+                    <option>Public Transit</option>
+                    <option>Walking</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Mood</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Topic</option>
+                  </select>
+                </div>
+              </div>
+
+
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success">Entertain me!</button>
-            <button class="button" id="cancel-modal">Cancel</button>
+            <button class="button is-primary" id="gen-button">Entertain me!</button>
+            <button class="button" id="cancel-button">Cancel</button>
           </footer>
         </div>
       </div>
-
-
-
 
 
       <!-- FOOTER -->

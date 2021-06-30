@@ -7,7 +7,8 @@ function calcRoute() {
     var request = {
         origin: document.getElementById("beginPoint").value,
         destination: document.getElementById("endPoint").value,
-        travelMode: google.maps.TravelMode.DRIVING, //can be update to WALKING, BICYCLING or TRANSIT
+        travelMode: document.getElementById("mode").value,
+        //travelMode: google.maps.TravelMode.DRIVING, //can be update to WALKING, BICYCLING or TRANSIT
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
 
@@ -17,8 +18,7 @@ function calcRoute() {
             //const output = document.querySelector('#output');
             //output.innerHTML = "<div>From: " + document.getElementById("beginPoint").value + ". <br />To: " + document.getElementById("endPoint").value + ".<br/>Driving distance: " + result.routes[0].legs[0].distance.text + ". <br />Duration: " + result.routes[0].legs[0].duration.text + "</div>";
             console.log("Going from " + document.getElementById("beginPoint").value + " to " + document.getElementById("endPoint").value)
-            console.log("is " + result.routes[0].legs[0].distance.text);
-            console.log("and will take you " + result.routes[0].legs[0].duration.text);
+            console.log("is " + result.routes[0].legs[0].distance.text + " and will take you " + result.routes[0].legs[0].duration.text + " via " + document.getElementById("mode").value);
             directionsDisplay.setDirections(result);
         } else {
             directionsDisplay.setDirections({ routes: []});

@@ -27,19 +27,22 @@ What kind of tech is used to build this application?
 (Please note that the specialties listed below may change or grow overtime.)
 
 Our Fearless Leader: Spencer Berkebile
-- JS
-- API
+- Google Destination/Maps API
 
 Raevin Dunson
 - Id & Var Management & Mapping
+- NYT API
 
 Jeevan Thapa
 - CSS
 
 Emily Mayeski
 - HTML & App Structure
+- Modal
 
 
-### More
+### Mockup & More
 
-Check out the plan [here](https://docs.google.com/presentation/d/1dZrm6GDdvsrh3AaV2AbNpvkwBbwebiKXFVCMyFsULBg/edit?usp=sharing). 
+
+
+Check out the full plan [here](https://docs.google.com/presentation/d/1dZrm6GDdvsrh3AaV2AbNpvkwBbwebiKXFVCMyFsULBg/edit?usp=sharing). 

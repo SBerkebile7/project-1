@@ -1,11 +1,18 @@
 var directionService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
 
-var allTrips = [{
-    start: "",
-    destination: "",
-    type: ""
-}];
+var allTrips = [];
+
+
+function init () {
+    var savedTrips = JSON.parse(localStorage.getItem("trips"));
+
+    if(savedTrips !== null) {
+        allTrips = savedTrips;
+    }
+
+    listTrip();
+}
 
 // This function calculates the route that would be taken based on a begin point and an end point
 function calcRoute() {
@@ -14,7 +21,6 @@ function calcRoute() {
         origin: document.getElementById("beginPoint").value,
         destination: document.getElementById("endPoint").value,
         travelMode: document.getElementById("mode").value,
-        //travelMode: google.maps.TravelMode.DRIVING, //can be update to WALKING, BICYCLING or TRANSIT
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
 
@@ -31,12 +37,17 @@ function calcRoute() {
 
             map.setCenter(myLatLng);
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
-        }
+        }  
+        saveAndStore();
     });
+    
+    // allTrips = [{
+    //     start: document.getElementById("beginPoint").value,
+    //     destination: document.getElementById("endPoint").value,
+    //     type: document.getElementById("mode").value
+    // }]
 
-    $("#beginPoint").val("");
     $(".modal").css("display", "none");
-    saveAndStore();
 }
 
 var options = {
@@ -49,53 +60,12 @@ var autocompleteBegin = new google.maps.places.Autocomplete(beginInput, options)
 var endInput = document.getElementById("endPoint");
 var autocompleteEnd = new google.maps.places.Autocomplete(endInput, options);
 
-// Lists trips taken on each tab based on their respective trip type
-function listTripAll() {
-    $("#prev-suggestions-all").empty();
-    
-    allTrips.forEach(function(allTrips) {
-        console.log("All: " + allTrips);
-        $("#prev-suggestions-all").append($(`<button class='list-group-item chosenTrip'>${allTrips}</button>`))
-    })
-}
-
-// Lists trips taken on each tab based on their respective trip type
-function listTripDriving() {
-    $("#prev-suggestions-driving").empty();
-
-    allTrips.forEach(function(allTrips) {
-        console.log("Driving: " + allTrips);
-        $("#prev-suggestions-driving").append($(`<button class='list-group-item chosenTrip'>${allTrips}</button>`))
-    })
-}
-
-// Lists trips taken on each tab based on their respective trip type
-function listTripBicycling() {
-    $("#prev-suggestions-biking").empty();
-
-    allTrips.forEach(function(allTrips) {
-        console.log("Bicycling: " + allTrips);
-        $("#prev-suggestions-biking").append($(`<button class='list-group-item chosenTrip'>${allTrips}</button>`))
-    })
-}
-
-// Lists trips taken on each tab based on their respective trip type
-function listTripTransit() {
-    $("#prev-suggestions-public").empty();
-
-    allTrips.forEach(function(allTrips) {
-        console.log("Transit: " + allTrips);
-        $("#prev-suggestions-public").append($(`<button class='list-group-item chosenTrip'>${allTrips}</button>`))
-    })
-}
-
-// Lists trips taken on each tab based on their respective trip type
-function listTripWalking() {
-    $("#prev-suggestions-walking").empty();
-
-    allTrips.forEach(function(allTrips) {
-        console.log("Walking: " + allTrips);
-        $("#prev-suggestions-walking").append($(`<button class='list-group-item chosenTrip'>${allTrips}</button>`))
+function listTrip(tripType, trips) {
+    $(`#prev-suggestions-${tripType}`).empty();
+console.log(`listTrip ${tripType} was run`);
+    trips.forEach(function(trip) {
+        console.log(`${tripType}: ${trip}`);
+        $(`#prev-suggestions-${tripType}`).append($(`<button class='list-group-item chosenTrip'>${trip.start}</button>`))
     })
 }
 
@@ -108,19 +78,29 @@ function storeTrip() {
 function saveAndStore() {
     console.log('saveAndStore was run');
 
-    var currentTrip = $("#beginPoint").val() || '';
-    allTrips.push(currentTrip);
+    var beginTrip = document.getElementById("beginPoint").value;
+    var endTrip = document.getElementById("endPoint").value;
+    var typeTrip = document.getElementById("mode").value;
+    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip});
 
-    listTripAll();
+    // listTripAll();
+    listTrip("all", allTrips);
     storeTrip();
     
     if(document.getElementById("mode").value == "DRIVING") {
-        listTripDriving();
+        var drivingTrips = allTrips.filter(function(trip){ return trip.type === "DRIVING"});
+        listTrip("driving", drivingTrips);
     } else if(document.getElementById("mode").value == "BICYCLING") {
-        listTripBicycling();
+        var bicyclingTrips = allTrips.filter(function(trip){ return trip.type === "BICYCLING"});
+        listTrip("biking", bicyclingTrips);
     } else if(document.getElementById("mode").value == "TRANSIT") {
-        listTripTransit();
+        var transitTrips = allTrips.filter(function(trip){ return trip.type === "TRANSIT"});
+        listTrip("public", transitTrips);
     } else if(document.getElementById("mode").value == "WALKING") {
-        listTripWalking();
+        var walkingTrips = allTrips.filter(function(trip){ return trip.type === "WALKING"});
+        listTrip("walking", walkingTrips);
     }
+
+    $("#beginPoint").val("");
+    $("#endPoint").val("");
 };

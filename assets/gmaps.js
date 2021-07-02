@@ -3,6 +3,7 @@ var directionsDisplay = new google.maps.DirectionsRenderer();
 
 var allTrips = [];
 
+var i = 0;
 
 function init () {
     var savedTrips = JSON.parse(localStorage.getItem("trips"));
@@ -35,17 +36,10 @@ function calcRoute() {
         } else {
             directionsDisplay.setDirections({ routes: []});
 
-            map.setCenter(myLatLng);
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
         }  
         saveAndStore();
     });
-    
-    // allTrips = [{
-    //     start: document.getElementById("beginPoint").value,
-    //     destination: document.getElementById("endPoint").value,
-    //     type: document.getElementById("mode").value
-    // }]
 
     $(".modal").css("display", "none");
 }
@@ -60,12 +54,13 @@ var autocompleteBegin = new google.maps.places.Autocomplete(beginInput, options)
 var endInput = document.getElementById("endPoint");
 var autocompleteEnd = new google.maps.places.Autocomplete(endInput, options);
 
+// Creates a button for each trip, and places it into a tab to be recalled later
 function listTrip(tripType, trips) {
     $(`#prev-suggestions-${tripType}`).empty();
-console.log(`listTrip ${tripType} was run`);
+    console.log(`listTrip ${tripType} was run`);
     trips.forEach(function(trip) {
         console.log(`${tripType}: ${trip}`);
-        $(`#prev-suggestions-${tripType}`).append($(`<button class='list-group-item chosenTrip'>${trip.start}</button>`))
+        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
     })
 }
 
@@ -81,12 +76,12 @@ function saveAndStore() {
     var beginTrip = document.getElementById("beginPoint").value;
     var endTrip = document.getElementById("endPoint").value;
     var typeTrip = document.getElementById("mode").value;
-    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip});
+    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, id: i++});
 
-    // listTripAll();
     listTrip("all", allTrips);
     storeTrip();
     
+    // Searches for what type of trip was taken and runs listTrip to place it into that specific tab
     if(document.getElementById("mode").value == "DRIVING") {
         var drivingTrips = allTrips.filter(function(trip){ return trip.type === "DRIVING"});
         listTrip("driving", drivingTrips);
@@ -104,3 +99,17 @@ function saveAndStore() {
     $("#beginPoint").val("");
     $("#endPoint").val("");
 };
+
+$(".tabs").on("click", ".chosenTrip", function(event) {
+    event.preventDefault();
+
+    console.log(allTrips);
+
+    let buttonID = $(this).attr('id');
+    buttonID = parseInt(buttonID);
+    console.log(buttonID);
+
+    const btnOutput = document.querySelector('#outputTrip');
+    btnOutput.innerHTML = "<div>From: " + allTrips[buttonID].start + ". <br />To: " + allTrips[buttonID].destination + "</div>";
+
+});

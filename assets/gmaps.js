@@ -1,5 +1,4 @@
 var directionService = new google.maps.DirectionsService();
-var directionsDisplay = new google.maps.DirectionsRenderer();
 
 var allTrips = [];
 
@@ -12,7 +11,12 @@ function init () {
         allTrips = savedTrips;
     }
 
-    listTrip();
+    // for(var i =0; i < allTrips.length; i++) {
+    //     var triptype = allTrips[i].typeTrip;
+
+
+    //     listTrip(triptype, trips);
+    // }
 }
 
 // This function calculates the route that would be taken based on a begin point and an end point
@@ -29,12 +33,10 @@ function calcRoute() {
     directionService.route(request, (result, status) => {
         if(status == google.maps.DirectionsStatus.OK) {
             const output = document.querySelector('#outputTrip');
-            output.innerHTML = "<div>From: " + document.getElementById("beginPoint").value + ". <br />To: " + document.getElementById("endPoint").value + ".<br/>Driving distance: " + result.routes[0].legs[0].distance.text + ". <br />Duration: " + result.routes[0].legs[0].duration.text + "</div>";
+            output.innerHTML = "<div>From: " + document.getElementById("beginPoint").value + ". <br />To: " + document.getElementById("endPoint").value + ".<br/>" + document.getElementById("mode").value + " distance: <span id='distance'>" + result.routes[0].legs[0].distance.text + "</span>. <br />Duration: <span id='duration'>" + result.routes[0].legs[0].duration.text + "</span></div>";
             console.log("Going from " + document.getElementById("beginPoint").value + " to " + document.getElementById("endPoint").value)
             console.log("is " + result.routes[0].legs[0].distance.text + " and will take you " + result.routes[0].legs[0].duration.text + " via " + document.getElementById("mode").value);
-            directionsDisplay.setDirections(result);
         } else {
-            directionsDisplay.setDirections({ routes: []});
 
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
         }  
@@ -76,10 +78,11 @@ function saveAndStore() {
     var beginTrip = document.getElementById("beginPoint").value;
     var endTrip = document.getElementById("endPoint").value;
     var typeTrip = document.getElementById("mode").value;
-    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, id: i++});
+    var tripDistance = document.getElementById("distance").innerHTML;
+    var tripDuration = document.getElementById("duration").innerHTML;
+    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, distance: tripDistance, duration: tripDuration, id: i++});
 
     listTrip("all", allTrips);
-    storeTrip();
     
     // Searches for what type of trip was taken and runs listTrip to place it into that specific tab
     if(document.getElementById("mode").value == "DRIVING") {
@@ -96,6 +99,8 @@ function saveAndStore() {
         listTrip("walking", walkingTrips);
     }
 
+    storeTrip();
+
     $("#beginPoint").val("");
     $("#endPoint").val("");
 };
@@ -110,6 +115,7 @@ $(".tabs").on("click", ".chosenTrip", function(event) {
     console.log(buttonID);
 
     const btnOutput = document.querySelector('#outputTrip');
-    btnOutput.innerHTML = "<div>From: " + allTrips[buttonID].start + ". <br />To: " + allTrips[buttonID].destination + "</div>";
-
+    btnOutput.innerHTML = "<div>From: " + allTrips[buttonID].start + ". <br />To: " + allTrips[buttonID].destination + ".<br/>" + allTrips[buttonID].type + " distance: " + allTrips[buttonID].distance + ". <br />Duration: " + allTrips[buttonID].duration + "</div>";
 });
+
+init();

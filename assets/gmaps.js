@@ -11,12 +11,17 @@ function init () {
         allTrips = savedTrips;
     }
 
-    // for(var i =0; i < allTrips.length; i++) {
-    //     var triptype = allTrips[i].typeTrip;
-
-
-    //     listTrip(triptype, trips);
-    // }
+    
+    for(var x = 0; x < allTrips.length; x++) {
+        var tripStart = allTrips[x].start;
+        var triptype = allTrips[x].type;
+        var tripId = allTrips[x].id;
+        console.log(allTrips[x].type);
+        console.log(x);
+        console.log(savedTrips);
+        $(`#prev-suggestions-${triptype}`).append($(`<button id=${tripId} class='list-group-item chosenTrip'> ${tripStart}</button>`));
+        // listTrip(triptype, savedTrips);
+    }
 }
 
 // This function calculates the route that would be taken based on a begin point and an end point
@@ -74,6 +79,8 @@ function storeTrip() {
 // Finds and saves the trip based on it's selected type of route
 function saveAndStore() {
     console.log('saveAndStore was run');
+
+    i = allTrips.length;
 
     var beginTrip = document.getElementById("beginPoint").value;
     var endTrip = document.getElementById("endPoint").value;

@@ -12,16 +12,23 @@ function init () {
         allTrips = savedTrips;
     }
 
-    
     for(var x = 0; x < allTrips.length; x++) {
-        var tripStart = allTrips[x].start;
         var triptype = allTrips[x].type;
-        var tripId = allTrips[x].id;
-        // console.log(allTrips[x].type);
-        // console.log(x);
-        // console.log(savedTrips);
-        $(`#prev-suggestions-${triptype}`).append($(`<button id=${tripId} class='list-group-item chosenTrip'> ${tripStart}</button>`));
-        // listTrip(triptype, savedTrips);
+        
+        listTrip("all", savedTrips);
+        if(triptype == "DRIVING") {
+            var drivingTrips = savedTrips.filter(function(trip){ return trip.type === "DRIVING"});
+            listTrip("driving", drivingTrips);
+        } else if(triptype == "BICYCLING") {
+            var bicyclingTrips = savedTrips.filter(function(trip){ return trip.type === "BICYCLING"});
+            listTrip("biking", bicyclingTrips);
+        } else if(triptype == "TRANSIT") {
+            var transitTrips = savedTrips.filter(function(trip){ return trip.type === "TRANSIT"});
+            listTrip("public", transitTrips);
+        } else if(triptype == "WALKING") {
+            var walkingTrips = savedTrips.filter(function(trip){ return trip.type === "WALKING"});
+            listTrip("walking", walkingTrips);
+        }
     }
 }
 
@@ -113,7 +120,7 @@ function saveAndStore() {
     $("#endPoint").val("");
 };
 
-$(".tabs").on("click", ".chosenTrip", function(event) {
+$(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
     event.preventDefault();
 
     console.log(allTrips);

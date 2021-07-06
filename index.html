@@ -69,20 +69,20 @@
           <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
               <ul class="tab-list">
-                <li class="is-active" >
-                  <a>All Trip Types</a>
+                <li class="is-active" id="all-tab">
+                  <a onclick="showAll()">All Trip Types</a>
                 </li>
-                <li>
-                  <a>Driving</a>
+                <li id="driving-tab">
+                  <a onclick="showDriving()">Driving</a>
                 </li>
-                <li>
-                  <a>Biking</a>
+                <li id="biking-tab">
+                  <a onclick="showBiking()">Biking</a>
                 </li>
-                <li>
-                  <a>Public Transit</a>
+                <li id="transit-tab">
+                  <a onclick="showTransit()">Public Transit</a>
                 </li>
-                <li>
-                  <a>Walking</a>
+                <li id="walking-tab">
+                  <a onclick="showWalking()">Walking</a>
                 </li>
               </ul>
             </div>
@@ -95,21 +95,21 @@
         <p class="entertainment-content-text" id="all">Nothing here yet!</p>
       </div>
 
-      <div id="prev-suggestions-driving">
+      <div id="prev-suggestions-driving" style="display:none;">
         <p class="entertainment-content-text" id="driving">Nothing here yet!</p>
       </div>
 
 
-      <div id="prev-suggestions-biking">
+      <div id="prev-suggestions-biking" style="display:none;">
         <p class="entertainment-content-text" id="biking">Nothing here yet!</p>
       </div>
 
 
-      <div id="prev-suggestions-public">
+      <div id="prev-suggestions-public" style="display:none;">
         <p class="entertainment-content-text" id="public-transit">Nothing here yet!</p>
       </div>
 
-      <div id="prev-suggestions-walking">
+      <div id="prev-suggestions-walking" style="display:none;">
         <p class="entertainment-content-text" id="walking">Nothing here yet!</p>
       </div>
 

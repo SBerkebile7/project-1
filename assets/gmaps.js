@@ -60,6 +60,7 @@ function calcRoute() {
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
         }
         saveAndStore();
+        popularArticles();
     });
 
     $(".modal").css("display", "none");
@@ -221,6 +222,60 @@ $(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
 
     const btnOutput = document.querySelector('#outputTrip');
     btnOutput.innerHTML = "<div>From: " + allTrips[buttonID].start + ". <br />To: " + allTrips[buttonID].destination + ".<br/>" + allTrips[buttonID].type + " distance: " + allTrips[buttonID].distance + ". <br />Duration: " + allTrips[buttonID].duration + "</div>";
+    popularArticles();
 });
 
 init();
+
+// NYT ARTICLE SEARCH API
+
+var today = moment().format("YYYYMMDD");
+
+var yesterday = moment().add(-1, 'days').format("YYYYMMDD");
+
+var durationArticleRatio = 5;
+
+// console.log(today);
+// console.log(yesterday);
+
+function popularArticles() {
+    // var period = document.querySelector() NOTE - NEED VARIABLE FROM SPENCER ON TRIP DURATION TO CREATE IF THEN FOR PERIOD VARIABLE
+    // var travel = document.querySelector('#mode').value;
+    // Create a variable to hold the value of rating
+    // var topic = document.querySelector('#topic').value;
+
+
+    fetch(
+      'https://api.nytimes.com/svc/search/v2/articlesearch.json?' +
+        'begin_date=' + yesterday +
+        '&end_date=' + today +
+        '&sort=newest' +
+        '&api-key=MwmqPsibE3r4OXyWACc0BbT3BiaQj3Jk'
+    )
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(res) {
+        // console.log(res.response);
+
+        displayArticles(res.response);
+
+
+      });
+  }
+
+  function displayArticles(data) {
+
+    $("#url-return").empty();
+
+    for (var i = 0; i < durationArticleRatio; i++) {
+  
+    var urlReturned = data.docs[i].web_url;
+    var articleName = data.docs[i].headline.main
+    // console.log(res.response.docs[0].web_url);
+    // console.log(res.response.docs[0].headline.main);
+    $('#outputTrip').append('<div id="url-return"></div>');
+    $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a><br/>`);
+
+    }
+  }

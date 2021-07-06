@@ -1,0 +1,17 @@
+#outputTrip h2 {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 4em;
+}
+
+#outputTrip p {
+    font-size: 1em;
+}
+
+#prev-suggestions {
+    font-size: 1em;
+    color: #2196F3;
+    margin: auto;
+    position:relative;
+    padding: 10px;
+}

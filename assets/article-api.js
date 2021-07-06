@@ -2,7 +2,7 @@ var today = moment().format("YYYYMMDD");
 
 var yesterday = moment().add(-1, 'days').format("YYYYMMDD");
 
-var durationArticleRatio = 
+var durationArticleRatio = 5;
 
 console.log(today);
 console.log(yesterday);
@@ -34,12 +34,17 @@ function popularArticles() {
   }
 
   function displayArticles(data) {
-    var urlReturned = data.docs[0].web_url;
-    var articleName = data.docs[0].headline.main
+
+    $("#url-return").empty();
+
+    for (var i = 0; i < durationArticleRatio; i++) {
+  
+    var urlReturned = data.docs[i].web_url;
+    var articleName = data.docs[i].headline.main
     // console.log(res.response.docs[0].web_url);
     // console.log(res.response.docs[0].headline.main);
     $('#popular-test').append('<div id="url-return"></div>');
-    $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a>`);
+    $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a><br/>`);
 
-    
+    }
   }

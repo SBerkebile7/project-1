@@ -2,8 +2,11 @@ var directionService = new google.maps.DirectionsService();
 
 var allTrips = [];
 
+// This variable is for setting ID's to the buttons
 var i = 0;
 
+
+// On page load init runs and attaches all files saved from localStorage to the page as a button
 function init () {
     var savedTrips = JSON.parse(localStorage.getItem("trips"));
 
@@ -11,28 +14,39 @@ function init () {
         allTrips = savedTrips;
     }
 
-    
+    // Loops through allTrips to attach previous trips to page as buttons
     for(var x = 0; x < allTrips.length; x++) {
-        var tripStart = allTrips[x].start;
-        var triptype = allTrips[x].type;
-        var tripId = allTrips[x].id;
-        // console.log(allTrips[x].type);
-        // console.log(x);
-        // console.log(savedTrips);
-        $(`#prev-suggestions-${triptype}`).append($(`<button id=${tripId} class='list-group-item chosenTrip'> ${tripStart}</button>`));
-        // listTrip(triptype, savedTrips);
+        var tripType = allTrips[x].type;
+        
+        listTrip("all", savedTrips);
+        if(tripType == "DRIVING") {
+            var drivingTrips = savedTrips.filter(function(trip){ return trip.type === "DRIVING"});
+            listTrip("driving", drivingTrips);
+        } else if(tripType == "BICYCLING") {
+            var bicyclingTrips = savedTrips.filter(function(trip){ return trip.type === "BICYCLING"});
+            listTrip("biking", bicyclingTrips);
+        } else if(tripType == "TRANSIT") {
+            var transitTrips = savedTrips.filter(function(trip){ return trip.type === "TRANSIT"});
+            listTrip("public", transitTrips);
+        } else if(tripType == "WALKING") {
+            var walkingTrips = savedTrips.filter(function(trip){ return trip.type === "WALKING"});
+            listTrip("walking", walkingTrips);
+        }
     }
 }
 
 // This function calculates the route that would be taken based on a begin point and an end point
 function calcRoute() {
     // request info pulled from modal
+
     var request = {
         origin: document.getElementById("beginPoint").value,
         destination: document.getElementById("endPoint").value,
         travelMode: document.getElementById("mode").value,
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
+
+    
 
     // uses google maps DirectionsService to calculate a route
     directionService.route(request, (result, status) => {
@@ -44,13 +58,14 @@ function calcRoute() {
         } else {
 
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
-        }  
+        }
         saveAndStore();
     });
 
     $(".modal").css("display", "none");
 }
 
+// Sets autofill option to only show cities as a viable choice
 var options = {
     types: ['(cities)']
 }
@@ -112,7 +127,90 @@ function saveAndStore() {
     $("#endPoint").val("");
 };
 
-$(".tabs").on("click", ".chosenTrip", function(event) {
+// Variables for the elements on the page for the tabs and their buttons
+var all = document.getElementById("prev-suggestions-all");
+var allTab = document.getElementById("all-tab");
+var drive = document.getElementById("prev-suggestions-driving");
+var driveTab = document.getElementById("driving-tab");
+var bike = document.getElementById("prev-suggestions-biking");
+var bikeTab = document.getElementById("biking-tab");
+var transit = document.getElementById("prev-suggestions-public");
+var transitTab = document.getElementById("transit-tab");
+var walking = document.getElementById("prev-suggestions-walking");
+var walkingTab = document.getElementById("walking-tab");
+// Toggles the appearance of buttons shown on the page based on selected tab. By default the 'all' tab is shown on page start
+function showAll() {
+    if (all.style.display === "none") {
+        all.style.display = "block";
+        allTab.classList.add("is-active");
+        drive.style.display = "none";
+        driveTab.classList.remove("is-active");
+        bike.style.display = "none";
+        bikeTab.classList.remove("is-active");
+        transit.style.display = "none";
+        transitTab.classList.remove("is-active");
+        walking.style.display = "none";
+        walkingTab.classList.remove("is-active");
+    }
+}
+function showDriving() {
+    if (drive.style.display === "none") {
+        all.style.display = "none";
+        allTab.classList.remove("is-active");
+        drive.style.display = "block";
+        driveTab.classList.add("is-active");
+        bike.style.display = "none";
+        bikeTab.classList.remove("is-active");
+        transit.style.display = "none";
+        transitTab.classList.remove("is-active");
+        walking.style.display = "none";
+        walkingTab.classList.remove("is-active");
+    }
+}
+function showBiking() {
+    if (bike.style.display === "none") {
+        all.style.display = "none";
+        allTab.classList.remove("is-active");
+        drive.style.display = "none";
+        driveTab.classList.remove("is-active");
+        bike.style.display = "block";
+        bikeTab.classList.add("is-active");
+        transit.style.display = "none";
+        transitTab.classList.remove("is-active");
+        walking.style.display = "none";
+        walkingTab.classList.remove("is-active");
+    }
+}
+function showTransit() {
+    if (transit.style.display === "none") {
+        all.style.display = "none";
+        allTab.classList.remove("is-active");
+        drive.style.display = "none";
+        driveTab.classList.remove("is-active");
+        bike.style.display = "none";
+        bikeTab.classList.remove("is-active");
+        transit.style.display = "block";
+        transitTab.classList.add("is-active");
+        walking.style.display = "none";
+        walkingTab.classList.remove("is-active");
+    }
+}
+function showWalking() {
+    if (walking.style.display === "none") {
+        all.style.display = "none";
+        allTab.classList.remove("is-active");
+        drive.style.display = "none";
+        driveTab.classList.remove("is-active");
+        bike.style.display = "none";
+        bikeTab.classList.remove("is-active");
+        transit.style.display = "none";
+        transitTab.classList.remove("is-active");
+        walking.style.display = "block";
+        walkingTab.classList.add("is-active");
+    }
+}
+
+$(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
     event.preventDefault();
 
     console.log(allTrips);

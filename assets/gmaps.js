@@ -17,9 +17,9 @@ function init () {
         var tripStart = allTrips[x].start;
         var triptype = allTrips[x].type;
         var tripId = allTrips[x].id;
-        console.log(allTrips[x].type);
-        console.log(x);
-        console.log(savedTrips);
+        // console.log(allTrips[x].type);
+        // console.log(x);
+        // console.log(savedTrips);
         $(`#prev-suggestions-${triptype}`).append($(`<button id=${tripId} class='list-group-item chosenTrip'> ${tripStart}</button>`));
         // listTrip(triptype, savedTrips);
     }

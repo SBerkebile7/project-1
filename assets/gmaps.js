@@ -2,6 +2,7 @@ var directionService = new google.maps.DirectionsService();
 
 var allTrips = [];
 
+// This variable is for setting ID's to the buttons
 var i = 0;
 
 function init () {
@@ -44,7 +45,7 @@ function calcRoute() {
         } else {
 
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
-        }  
+        }
         saveAndStore();
     });
 

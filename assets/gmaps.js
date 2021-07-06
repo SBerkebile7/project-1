@@ -5,6 +5,8 @@ var allTrips = [];
 // This variable is for setting ID's to the buttons
 var i = 0;
 
+
+// On page load init runs and attaches all files saved from localStorage to the page as a button
 function init () {
     var savedTrips = JSON.parse(localStorage.getItem("trips"));
 
@@ -12,6 +14,7 @@ function init () {
         allTrips = savedTrips;
     }
 
+    // Loops through allTrips to attach previous trips to page as buttons
     for(var x = 0; x < allTrips.length; x++) {
         var triptype = allTrips[x].type;
         
@@ -59,6 +62,7 @@ function calcRoute() {
     $(".modal").css("display", "none");
 }
 
+// Sets autofill option to only show cities as a viable choice
 var options = {
     types: ['(cities)']
 }

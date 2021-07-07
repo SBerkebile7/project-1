@@ -4,13 +4,13 @@ fetch(
 .then(function(res) {
   return res.json();
 })
-.then(function(data) {
-  console.log(data);
+.then(function(res) {
+  //console.log(res);
+  displayRecommendations(res);
 });
 
-//fetch (
-//  'https://api.nytimes.com/svc/books/v3/reviews.json?' +
-//  'title='
+//fetch(
+//  'https://api.nytimes.com/svc/movies/v2/reviews/search.json?' +
 //  '&api-key=HXMcUKu4hWhoZPQBW99bGZ9An0FdbWEl'
 //)
 //.then(function(res) {
@@ -20,27 +20,16 @@ fetch(
 //  console.log(data);
 //});
 
-fetch(
-  'https://api.nytimes.com/svc/movies/v2/reviews/search.json?' +
-  '&api-key=HXMcUKu4hWhoZPQBW99bGZ9An0FdbWEl'
-)
-.then(function(res) {
-  return res.json();
-})
-.then(function(data) {
-  console.log(data);
-});
-
 var recAmount = 10;
+var recsShow =  document.querySelector('#recs');
 
-function displayRecommendations(data) {
-
-  $("#url-return").empty();
+function displayRecommendations(res) {
+  $("#recs").empty();
 
   for (var i = 0; i < recAmount; i++) {
-
-  var urlReturned = data.docs[i].web_url;
-  $('#reviews').append('<div id="url-return"></div>');
-  $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a><br/>`);
+    var recsURL = res.results.books[i].amazon_product_url;
+    var bookTitle = res.results.books[i].title;
+    $('#outputTrip').append('<div id="#recs"></div>');
+    $("#recs").append(`<a href="${recsURL}" target="_blank">${bookTitle}</a><br/>`);
   }
 }

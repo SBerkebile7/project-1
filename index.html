@@ -9,11 +9,20 @@
     <!-- CSS SHEETS -->
     <link href="./assets/style.css" rel="stylesheet">
     <link href="./assets/toggle.css" rel="stylesheet">
+    <link href="./assets/warning.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+
+  <div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <p>WARNING: This app is only meant for use only by traveling passengers, not by drivers. Please travel safely!</p>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 
     <section class="hero is-info is-medium" id="app-header">
         <div class="hero-head">

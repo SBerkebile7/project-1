@@ -8,6 +8,10 @@
     font-size: 1em;
 }
 
+.modal-background {
+    background-color: lightskyblue;
+}
+
 #prev-suggestions {
     font-size: 1em;
     color: #2196F3;
@@ -16,6 +20,11 @@
     padding: 10px;
     line-height: 1.5;
     white-space: nowrap;
+}
+
+#prev-suggestions button {
+    background-color: #2196F3;
+    color: white;
 }
 
 .control {

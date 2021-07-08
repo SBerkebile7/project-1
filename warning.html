@@ -21,18 +21,17 @@
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Warning</p>
-        <button class="delete" aria-label="close"></button>
+        <button class="delete" aria-label="close" id="close-warning"></button>
       </header>
       <section class="modal-card-body">
         <p>This application is only intended for use by traveling passengers. It is NOT intended for use by drivers or those operating a vehicle. We do NOT recommend reading and driving. Please travel safely.</p>
-      </section>
-      <footer class="modal-card-foot">
         <label class="checkbox">
           <input type="checkbox">
           I agree to the terms and conditions
         </label>
-        <button class="button is-success">Save changes</button>
-        <button class="button">Cancel</button>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" id="close-warning">Proceed</button>
       </footer>
     </div>
   </div>
@@ -206,6 +205,7 @@
 <script src="./assets/gmaps.js"></script>  
 
 <script src="./assets/script.js"></script>  
+<script src="./assets/warning.js"></script>
 
 
 </body>

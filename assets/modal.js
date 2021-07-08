@@ -11,7 +11,3 @@ $("#close-modal").click(function() {
 $("#cancel-button").click(function() {
   $(".modal").css("display", "none");
 });
-
-$(".modal-close").click(function() {
-  $(".modal").css("display", "none");
-});

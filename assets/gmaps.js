@@ -122,7 +122,8 @@ function saveAndStore() {
     var typeTrip = document.getElementById("mode").value;
     var tripDistance = document.getElementById("distance").innerHTML;
     var tripDuration = document.getElementById("duration").innerHTML;
-    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, distance: tripDistance, duration: tripDuration, id: i++});
+    var tripArticleType = document.getElementById("articleType").value;
+    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, distance: tripDistance, duration: tripDuration, choice: tripArticleType, id: i++});
 
     listTrip("all", allTrips);
     
@@ -245,11 +246,18 @@ $(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
     var parsedNum = allTrips[buttonID].duration;
     parsedNum = parsedNum.replace(/[^0-9\.]+/g, "");
     parsedNum.parseInt;
-    if(parsedNum > 60) {
+    if(allTrips[buttonID].choice == "books") {
         console.log("books");
-    } else {
-        popularArticles();
+    } else if (allTrips[buttonID].choice == "articles") {
         console.log("articles");
+        popularArticles();
+    } else {
+        if(parsedNum > 60) {
+            console.log("books");
+        } else {
+            popularArticles();
+            console.log("articles");
+        }
     }
 });
 

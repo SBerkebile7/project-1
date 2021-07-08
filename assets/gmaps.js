@@ -68,12 +68,14 @@ function calcRoute() {
         parsedNum.parseInt;
         if(document.getElementById("articleType").value == "books") {
             console.log("books");
+            bookRecommendations();
         } else if (document.getElementById("articleType").value == "articles") {
             console.log("articles");
             popularArticles();
         } else {
             if(parsedNum > 60) {
                 console.log("books");
+                bookRecommendations();
             } else {
                 popularArticles();
                 console.log("articles");
@@ -248,12 +250,14 @@ $(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
     parsedNum.parseInt;
     if(allTrips[buttonID].choice == "books") {
         console.log("books");
+        bookRecommendations();
     } else if (allTrips[buttonID].choice == "articles") {
         console.log("articles");
         popularArticles();
     } else {
         if(parsedNum > 60) {
             console.log("books");
+            bookRecommendations();
         } else {
             popularArticles();
             console.log("articles");
@@ -315,3 +319,29 @@ function popularArticles() {
 
     }
   }
+
+  // NYT Books Recommendations List API
+  function bookRecommendations () {
+  
+    fetch(
+      'https://api.nytimes.com/svc/books/v3/lists/current/e-book-fiction.json?api-key=HXMcUKu4hWhoZPQBW99bGZ9An0FdbWEl'
+      )
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(res) {
+        console.log(res);
+        displayRecommendations(res);
+      });
+    }
+    
+    function displayRecommendations(res) {
+        $("#recs").empty();
+        
+        for (var i = 0; i < 5; i++) {
+            var recsURL = res.results.books[i].amazon_product_url;
+            var bookTitle = res.results.books[i].title;
+            $('#outputTrip').append('<div id="recs"></div>');
+            $("#recs").append(`<a href="${recsURL}" target="_blank">${bookTitle}</a><br/>`);
+        }
+      }

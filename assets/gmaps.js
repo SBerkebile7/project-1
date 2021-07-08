@@ -105,7 +105,7 @@ function listTrip(tripType, trips) {
     trips.forEach(function(trip) {
         console.log(`${tripType}: ${trip}`);
         //$(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
-        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> From: ${trip.start}. <br />To: ${trip.destination}.<br/> Type of transit: ${trip.type}<br /> Choice of article or book: ${trip.choice}</button>`));
+        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item btn outlined chosenTrip my-2 mx-1'>From: ${trip.start}.<br />To: ${trip.destination}.<br/>Type of transit: ${trip.type}<br />Choice of article or book: ${trip.choice}</button>`));
     })
 }
 

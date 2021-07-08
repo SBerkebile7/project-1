@@ -3,3 +3,30 @@
     margin: 20px;
     font-size: 2em;
 }
+
+.chosenTrip {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    padding: 10px;
+    background-color: white;
+    border:2px solid #3e8ed0;
+    color: #3e8ed0;
+    border-radius: 4px;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1.5;
+    position: relative;
+    vertical-align: top;
+}
+.chosenTrip:hover, .chosenTrip:active {
+    background-color: #3e8ed0;
+    border-color: #3e8ed0;
+    color: #fff;
+}
+.chosenTrip:focus {
+    background-color: #84b7e1;
+    border-color: #3e8ed0;
+    color: #fff;
+}

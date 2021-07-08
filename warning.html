@@ -18,10 +18,23 @@
 
   <div class="modal is-active">
     <div class="modal-background"></div>
-    <div class="modal-content">
-      <p>WARNING: This app is only meant for use only by traveling passengers, and it is NOT intended for use by drivers or by those operating a vehicle. Please travel safely!</p>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Warning</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>This application is only intended for use by traveling passengers. It is NOT intended for use by drivers or those operating a vehicle. We do NOT recommend reading and driving. Please travel safely.</p>
+      </section>
+      <footer class="modal-card-foot">
+        <label class="checkbox">
+          <input type="checkbox">
+          I agree to the terms and conditions
+        </label>
+        <button class="button is-success">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
     <section class="hero is-info is-medium" id="app-header">

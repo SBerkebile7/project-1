@@ -104,7 +104,8 @@ function listTrip(tripType, trips) {
     console.log(`listTrip ${tripType} was run`);
     trips.forEach(function(trip) {
         console.log(`${tripType}: ${trip}`);
-        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
+        //$(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
+        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> From: ${trip.start}. <br />To: ${trip.destination}.<br/> Type of transit: ${trip.type}<br /> Choice of article or book: ${trip.choice}</button>`));
     })
 }
 
@@ -148,6 +149,8 @@ function saveAndStore() {
 
     $("#beginPoint").val("");
     $("#endPoint").val("");
+    $("#mode").val("");
+    $("#articleType").val("");
 };
 
 // Variables for the elements on the page for the tabs and their buttons

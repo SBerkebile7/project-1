@@ -5,9 +5,17 @@ $("#new-button").click(function() {
 });
 
 $("#close-modal").click(function() {
+  $("#beginPoint").val("");
+  $("#endPoint").val("");
+  $("#mode").val("");
+  $("#articleType").val("");
   $(".modal").css("display", "none");
 });
 
 $("#cancel-button").click(function() {
+  $("#beginPoint").val("");
+  $("#endPoint").val("");
+  $("#mode").val("");
+  $("#articleType").val("");
   $(".modal").css("display", "none");
 });

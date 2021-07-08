@@ -9,11 +9,32 @@
     <!-- CSS SHEETS -->
     <link href="./assets/style.css" rel="stylesheet">
     <link href="./assets/toggle.css" rel="stylesheet">
+    <link href="./assets/warning.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+
+  <div class="modal is-active warning-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Warning!</p>
+      </header>
+      <section class="modal-card-body">
+        <p>This application is only intended for use by traveling passengers. It is NOT intended for use by drivers or those operating a vehicle. We do NOT recommend reading and driving. Please travel safely.</p>
+        <br>
+        <label class="checkbox">
+          <input type="checkbox" id="checkbox">
+          I agree to the terms and conditions
+        </label>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button" id="proceed">Proceed</button>
+      </footer>
+    </div>
+  </div>
 
     <section class="hero is-info is-medium" id="app-header">
         <div class="hero-head">
@@ -191,6 +212,7 @@
 <script src="./assets/gmaps.js"></script>  
 
 <script src="./assets/script.js"></script>  
+<script src="./assets/warning.js"></script>
 
 
 </body>

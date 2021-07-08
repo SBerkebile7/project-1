@@ -12,7 +12,7 @@ function bookRecommendations () {
       return res.json();
     })
     .then(function(res) {
-      //console.log(res);
+      console.log(res);
       displayRecommendations(res);
     });
     

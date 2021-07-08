@@ -53,6 +53,7 @@ function calcRoute() {
         if(status == google.maps.DirectionsStatus.OK) {
             const output = document.querySelector('#outputTrip');
             output.innerHTML = "<div>From: " + document.getElementById("beginPoint").value + ". <br />To: " + document.getElementById("endPoint").value + ".<br/>" + document.getElementById("mode").value + " distance: <span id='distance'>" + result.routes[0].legs[0].distance.text + "</span>. <br />Duration: <span id='duration'>" + result.routes[0].legs[0].duration.text + "</span></div>";
+
             console.log("Going from " + document.getElementById("beginPoint").value + " to " + document.getElementById("endPoint").value)
             console.log("is " + result.routes[0].legs[0].distance.text + " and will take you " + result.routes[0].legs[0].duration.text + " via " + document.getElementById("mode").value);
         } else {
@@ -60,7 +61,27 @@ function calcRoute() {
             output.innerHTML = "<div>Could not retrieve driving distance.</div>";
         }
         saveAndStore();
-        popularArticles();
+
+        // Searches for modal input for preferred type of article
+        var parsedNum = result.routes[0].legs[0].duration.text;
+        parsedNum = parsedNum.replace(/[^0-9\.]+/g, "");
+        parsedNum.parseInt;
+        if(document.getElementById("articleType").value == "books") {
+            console.log("books");
+            bookRecommendations();
+        } else if (document.getElementById("articleType").value == "articles") {
+            console.log("articles");
+            popularArticles();
+        } else {
+            if(parsedNum > 60) {
+                console.log("books");
+                bookRecommendations();
+            } else {
+                popularArticles();
+                console.log("articles");
+            }
+        }
+        
     });
 
     $(".modal").css("display", "none");
@@ -103,7 +124,8 @@ function saveAndStore() {
     var typeTrip = document.getElementById("mode").value;
     var tripDistance = document.getElementById("distance").innerHTML;
     var tripDuration = document.getElementById("duration").innerHTML;
-    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, distance: tripDistance, duration: tripDuration, id: i++});
+    var tripArticleType = document.getElementById("articleType").value;
+    allTrips.push({start: beginTrip, destination: endTrip, type: typeTrip, distance: tripDistance, duration: tripDuration, choice: tripArticleType, id: i++});
 
     listTrip("all", allTrips);
     
@@ -222,7 +244,25 @@ $(".past-trip-buttons").on("click", ".chosenTrip", function(event) {
 
     const btnOutput = document.querySelector('#outputTrip');
     btnOutput.innerHTML = "<div>From: " + allTrips[buttonID].start + ". <br />To: " + allTrips[buttonID].destination + ".<br/>" + allTrips[buttonID].type + " distance: " + allTrips[buttonID].distance + ". <br />Duration: " + allTrips[buttonID].duration + "</div>";
-    popularArticles();
+    
+    var parsedNum = allTrips[buttonID].duration;
+    parsedNum = parsedNum.replace(/[^0-9\.]+/g, "");
+    parsedNum.parseInt;
+    if(allTrips[buttonID].choice == "books") {
+        console.log("books");
+        bookRecommendations();
+    } else if (allTrips[buttonID].choice == "articles") {
+        console.log("articles");
+        popularArticles();
+    } else {
+        if(parsedNum > 60) {
+            console.log("books");
+            bookRecommendations();
+        } else {
+            popularArticles();
+            console.log("articles");
+        }
+    }
 });
 
 init();
@@ -279,3 +319,29 @@ function popularArticles() {
 
     }
   }
+
+  // NYT Books Recommendations List API
+  function bookRecommendations () {
+  
+    fetch(
+      'https://api.nytimes.com/svc/books/v3/lists/current/e-book-fiction.json?api-key=HXMcUKu4hWhoZPQBW99bGZ9An0FdbWEl'
+      )
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(res) {
+        console.log(res);
+        displayRecommendations(res);
+      });
+    }
+    
+    function displayRecommendations(res) {
+        $("#recs").empty();
+        
+        for (var i = 0; i < 5; i++) {
+            var recsURL = res.results.books[i].amazon_product_url;
+            var bookTitle = res.results.books[i].title;
+            $('#outputTrip').append('<div id="recs"></div>');
+            $("#recs").append(`<a href="${recsURL}" target="_blank">${bookTitle}</a><br/>`);
+        }
+      }

@@ -46,8 +46,6 @@ function calcRoute() {
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
 
-    
-
     // uses google maps DirectionsService to calculate a route
     directionService.route(request, (result, status) => {
         if(status == google.maps.DirectionsStatus.OK) {
@@ -104,7 +102,8 @@ function listTrip(tripType, trips) {
     console.log(`listTrip ${tripType} was run`);
     trips.forEach(function(trip) {
         console.log(`${tripType}: ${trip}`);
-        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
+        //$(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item chosenTrip'> ${trip.start}</button>`));
+        $(`#prev-suggestions-${tripType}`).append($(`<button id=${trip.id} class='list-group-item btn outlined chosenTrip my-2 mx-1'>From: ${trip.start}.<br />To: ${trip.destination}.<br/>Type of transit: ${trip.type}<br />Choice of article or book: ${trip.choice}</button>`));
     })
 }
 
@@ -148,6 +147,8 @@ function saveAndStore() {
 
     $("#beginPoint").val("");
     $("#endPoint").val("");
+    $("#mode").val("");
+    $("#articleType").val("");
 };
 
 // Variables for the elements on the page for the tabs and their buttons
@@ -314,7 +315,7 @@ function popularArticles() {
     var articleName = data.docs[i].headline.main
     // console.log(res.response.docs[0].web_url);
     // console.log(res.response.docs[0].headline.main);
-    $('#outputTrip').append('<div id="url-return"></div>');
+    $('#outputArticles').append('<div id="url-return"></div>');
     $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a><br/>`);
 
     }
@@ -341,7 +342,7 @@ function popularArticles() {
         for (var i = 0; i < 5; i++) {
             var recsURL = res.results.books[i].amazon_product_url;
             var bookTitle = res.results.books[i].title;
-            $('#outputTrip').append('<div id="recs"></div>');
+            $('#outputArticles').append('<div id="recs"></div>');
             $("#recs").append(`<a href="${recsURL}" target="_blank">${bookTitle}</a><br/>`);
         }
       }

@@ -2,6 +2,13 @@
     text-align:center;
     margin: 20px;
     font-size: 2em;
+    justify-content: center;
+}
+#outputArticles {
+    text-align:center;
+    margin: 20px;
+    font-size: 2em;
+    justify-content: center;
 }
 
 .chosenTrip {

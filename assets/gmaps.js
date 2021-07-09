@@ -307,7 +307,7 @@ function popularArticles() {
 
   function displayArticles(data) {
 
-    $("#url-return").empty();
+    $("#outputArticles").empty();
 
     for (var i = 0; i < durationArticleRatio; i++) {
   
@@ -337,12 +337,14 @@ function popularArticles() {
     }
     
     function displayRecommendations(res) {
-        $("#recs").empty();
+        $("#outputArticles").empty();
         
         for (var i = 0; i < 5; i++) {
             var recsURL = res.results.books[i].amazon_product_url;
             var bookTitle = res.results.books[i].title;
-            $('#outputArticles').append('<div id="recs"></div>');
-            $("#recs").append(`<a href="${recsURL}" target="_blank">${bookTitle}</a><br/>`);
+            var bookImg = res.results.books[i].book_image;
+
+            $('#outputArticles').append('<div class="output-box" id="recs"></div>');
+            $("#recs").append(`<div><img src="${bookImg}" width="64" height="64"><a href="${recsURL}" target="_blank">${bookTitle}</a></div><br/>`);
         }
       }

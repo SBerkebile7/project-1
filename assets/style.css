@@ -51,11 +51,19 @@ li:hover {
     font-size: 2em;
     justify-content: center;
 }
+
 #outputArticles {
-    text-align:center;
     margin: 20px;
-    font-size: 2em;
-    justify-content: center;
+    display: flex;
+}
+
+.output-box {
+    border: 1 var(--primary-color);
+    box-shadow: var(--abstract-boxes1);
+}
+
+#media {
+    width: 100%;
 }
 
 .chosenTrip {
@@ -94,3 +102,4 @@ li:hover {
     border-color: var(--secondary-color);
     color: var(--accents2);
 }
+

@@ -23,18 +23,28 @@ What kind of tech is used to build this application?
 (Please note that the specialties listed below may change or grow overtime.)
 
 Our Fearless Leader: Spencer Berkebile
-- Google Destination/Maps API
+- Google Destination/Maps AP
+- Tested all APIs
+- LocalStorage
+- Dynamic buttons / text on webpage
 
 Raevin Dunson
 - Id & Var Management & Mapping
-- NYT API
+- NYT Books & Movies API
+- Modal for Warning
+- CSS Refactor & Redesign
 
 Jeevan Thapa
 - CSS
 
 Emily Mayeski
 - HTML & App Structure
-- Modal
+- Modal Structure
+- Initial Bulma Set Up
+- NYT Article Search API
+- Moment.js
+- CSS & File Structure Cleanup
+
 
 
 ### Mockup & More

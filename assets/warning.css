@@ -1,0 +1,12 @@
+.warning-modal p {
+    font-size: x-large;
+}
+
+.checkbox {
+    font-size: large;
+    margin-top: .25vh;
+}
+
+#proceed {
+    justify-content: right;
+}

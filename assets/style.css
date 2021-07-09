@@ -48,19 +48,29 @@ li:hover {
 #outputTrip {
     text-align:center;
     margin: 20px;
-    font-size: 2em;
+    /* font-size: 2em; */
     justify-content: center;
 }
 
-#outputArticles {
-    margin: 20px;
-    display: flex;
+.info-gen-space {
+    text-align: center;
 }
 
-.output-box {
+#outputArticles {
+    /* text-align:center; */
+    margin: 20px;
+    /* display: flex; */
+}
+
+#outputArticles a:hover {
+    color: var(--primary-color);
+}
+
+
+/* .output-box {
     border: 1 var(--primary-color);
     box-shadow: var(--abstract-boxes1);
-}
+} */
 
 #media {
     width: 100%;

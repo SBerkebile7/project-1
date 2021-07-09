@@ -18,7 +18,7 @@ p, #text,  a {
 }
 
 .hero {
-    background: url(./img/transit2.jpg);
+    background: url("../img/transit2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: bottom;

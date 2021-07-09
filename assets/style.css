@@ -2,6 +2,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+p, #text,  a {
+    font-size: 1.25em;
+}
+
 :root {
     --primary-color: #D17402;
     --secondary-color: #094c83;
@@ -46,18 +50,25 @@ li:hover {
 }
 
 #outputTrip {
-    text-align:center;
+    text-align: center;
     margin: 20px;
-    /* font-size: 2em; */
+    font-size: 1.25em;
     justify-content: center;
 }
 
 .info-gen-space {
     text-align: center;
+    margin: 5%;
 }
 
+h3.info-gen-space {
+    font-size: 32px;
+    color: var(--accents1);
+}
+
+
 #outputArticles {
-    /* text-align:center; */
+    text-align:center;
     margin: 20px;
     /* display: flex; */
 }

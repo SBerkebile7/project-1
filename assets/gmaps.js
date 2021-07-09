@@ -316,7 +316,7 @@ function popularArticles() {
     // console.log(res.response.docs[0].web_url);
     // console.log(res.response.docs[0].headline.main);
     $('#outputArticles').append('<div id="url-return"></div>');
-    $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a><br/>`);
+    $("#url-return").append(`<a href="${urlReturned}" target="_blank">${articleName}</a> <i class="fas fa-external-link-alt"></i><br/><br/>`);
 
     }
   }
@@ -342,9 +342,12 @@ function popularArticles() {
         for (var i = 0; i < 5; i++) {
             var recsURL = res.results.books[i].amazon_product_url;
             var bookTitle = res.results.books[i].title;
-            var bookImg = res.results.books[i].book_image;
+            // var bookImg = res.results.books[i].book_image;
 
             $('#outputArticles').append('<div class="output-box" id="recs"></div>');
-            $("#recs").append(`<div><img src="${bookImg}" width="64" height="64"><a href="${recsURL}" target="_blank">${bookTitle}</a></div><br/>`);
+            // $("#recs").append(`<div><img src="${bookImg}" width="64" height="64"><a href="${recsURL}" target="_blank">${bookTitle}</a></div><br/>`);
+            $("#recs").append(`<div><a href="${recsURL}" target="_blank">${bookTitle}</a> <i class="fas fa-external-link-alt"></i></div><br/>`);
+
         }
+        
       }

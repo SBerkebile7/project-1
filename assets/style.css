@@ -1,14 +1,90 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+p, #text,  a {
+    font-size: 1.25em;
+}
+
+:root {
+    --primary-color: #D17402;
+    --secondary-color: #094c83;
+    --accents1: #3e8ed0;
+    --accents2: #ffffff;
+    --abstract-boxes1: #d1740250;
+    --abstract-boxes2: #094c8350;
+    --abstract-boxes3: #3e8ed050;
+
+}
+
+.hero {
+    background: url(./img/transit2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+    background-color: var(--secondary-color);
+}
+
+p span {
+    background-color: var(--abstract-boxes1);
+}
+
+a i, a span {
+    color: var(--primary-color);
+}
+
+.menu {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+
+.is-one-third {
+    background-color: #d1740250;
+    padding-top: 0;
+}
+
+li:hover {
+    background-color: var(--primary-color);
+    color: var(--accents2);
+}
+
 #outputTrip {
-    text-align:center;
+    text-align: center;
     margin: 20px;
-    font-size: 2em;
+    font-size: 1.25em;
     justify-content: center;
 }
+
+.info-gen-space {
+    text-align: center;
+    margin: 5%;
+}
+
+h3.info-gen-space {
+    font-size: 32px;
+    color: var(--accents1);
+}
+
+
 #outputArticles {
     text-align:center;
     margin: 20px;
-    font-size: 2em;
-    justify-content: center;
+    /* display: flex; */
+}
+
+#outputArticles a:hover {
+    color: var(--primary-color);
+}
+
+
+/* .output-box {
+    border: 1 var(--primary-color);
+    box-shadow: var(--abstract-boxes1);
+} */
+
+#media {
+    width: 100%;
 }
 
 .chosenTrip {
@@ -16,9 +92,9 @@
     flex-wrap: wrap;
     width: auto;
     padding: 10px;
-    background-color: white;
-    border:2px solid #3e8ed0;
-    color: #3e8ed0;
+    background-color: var(--accents2);
+    border:2px solid var(--secondary-color);
+    color: var(--secondary-color);
     border-radius: 4px;
     box-shadow: none;
     display: inline-flex;
@@ -27,13 +103,24 @@
     position: relative;
     vertical-align: top;
 }
-.chosenTrip:hover, .chosenTrip:active {
-    background-color: #3e8ed0;
-    border-color: #3e8ed0;
-    color: #fff;
+.chosenTrip:hover, .chosenTrip:active, #new-button:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--accents2);
 }
 .chosenTrip:focus {
     background-color: #84b7e1;
-    border-color: #3e8ed0;
-    color: #fff;
+    border-color: var(--accents1);
+    color: var(--accents2);
 }
+
+#new-button {
+    border-color: var(--secondary-color);
+}
+
+#new-button:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--accents2);
+}
+

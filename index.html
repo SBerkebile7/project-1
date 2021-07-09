@@ -27,7 +27,7 @@
         <br>
         <label class="checkbox">
           <input type="checkbox" id="checkbox">
-          I agree to the terms and conditions
+          I will not read while driving, or otherwise be distracted by any content or media suggested by this application. I am a passenger or will use a screen reader or audio book during my journey.
         </label>
       </section>
       <footer class="modal-card-foot">
@@ -43,20 +43,20 @@
             <div class="container">
 
                 <div class="navbar-brand">
-                    <a class="navbar-item">
-                        <i class="fas fa-theater-masks" style="font-size: 30px;"></i>
+                    <a class="navbar-item"> 
+                        <i class="fas fa-book" style="font-size: 30px;"> <span>noheadphones</span> </i>
                     </a>
                 </div>
 
                 <div class="navbar-end">
                     
-                    <span class="navbar-item">
+                    <!-- <span class="navbar-item">
                         <p class="toggle-text">Dark Mode</p>  
                     <label class="switch" id="dark-mode">
                         <input type="checkbox">
                         <span class="slider round"></span>
                     </label>
-                </span>                      
+                </span>                       -->
                 </div>
 
             </div>
@@ -66,7 +66,7 @@
         <div class="hero-body px-auto pb-1 pt-6" id="hero-body">
           <div class="container has-text-centered">
             <p class="title">
-                Commuting? Bored?
+              Commuting? <span>Forgot your headphones?</span>
             </p>
             <p class="subtitle">
               We get it. Click <strong>New Recommendation</strong> and be entertained!
@@ -91,59 +91,69 @@
             <!-- Code will go here for chosen article or book category -->
           </div>
         </div>
-          
-        
-        <div class="hero-foot">
-          <nav class="tabs is-boxed is-fullwidth">
-            <div class="container">
-              <ul class="tab-list">
-                <li class="is-active" id="all-tab">
-                  <a onclick="showAll()">All Trip Types</a>
-                </li>
-                <li id="driving-tab">
-                  <a onclick="showDriving()">Driving</a>
-                </li>
-                <li id="biking-tab">
-                  <a onclick="showBiking()">Biking</a>
-                </li>
-                <li id="transit-tab">
-                  <a onclick="showTransit()">Public Transit</a>
-                </li>
-                <li id="walking-tab">
-                  <a onclick="showWalking()">Walking</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
       </section>
 
-    <section class="container past-trip-buttons" id="prev-suggestions">
-      <div id="prev-suggestions-all">
-        <p class="entertainment-content-text py-2" id="all">Nothing here yet!</p>
+
+      <div class="columns">
+        <div class="column is-one-third">
+          <aside class="menu">
+            <p class="menu-label">
+              View Past Trips
+            </p>
+            <ul class="menu-list">
+              <li class="is-active" id="all-tab">
+                <a onclick="showAll()">All Trip Types</a>
+              </li>
+              <li id="driving-tab">
+                <a onclick="showDriving()">Driving</a>
+              </li>
+              <li id="biking-tab">
+                <a onclick="showBiking()">Biking</a>
+              </li>
+              <li id="transit-tab">
+                <a onclick="showTransit()">Public Transit</a>
+              </li>
+              <li id="walking-tab">
+                <a onclick="showWalking()">Walking</a>
+              </li>
+          </ul>
+          </aside>
+  
+        </div>
+  
+        <div class="column">
+          <section class="container past-trip-buttons" id="prev-suggestions">
+            <div id="prev-suggestions-all">
+              <p class="entertainment-content-text py-2" id="all">Nothing here yet!</p>
+            </div>
+      
+            <div id="prev-suggestions-driving" style="display:none;">
+              <p class="entertainment-content-text py-2" id="driving">Nothing here yet!</p>
+            </div>
+      
+      
+            <div id="prev-suggestions-biking" style="display:none;">
+              <p class="entertainment-content-text py-2" id="biking">Nothing here yet!</p>
+            </div>
+      
+      
+            <div id="prev-suggestions-public" style="display:none;">
+              <p class="entertainment-content-text py-2" id="public-transit">Nothing here yet!</p>
+            </div>
+      
+            <div id="prev-suggestions-walking" style="display:none;">
+              <p class="entertainment-content-text py-2" id="walking">Nothing here yet!</p>
+            </div>
+          </section>
+        </div>
       </div>
 
-      <div id="prev-suggestions-driving" style="display:none;">
-        <p class="entertainment-content-text py-2" id="driving">Nothing here yet!</p>
-      </div>
-
-
-      <div id="prev-suggestions-biking" style="display:none;">
-        <p class="entertainment-content-text py-2" id="biking">Nothing here yet!</p>
-      </div>
-
-
-      <div id="prev-suggestions-public" style="display:none;">
-        <p class="entertainment-content-text py-2" id="public-transit">Nothing here yet!</p>
-      </div>
-
-      <div id="prev-suggestions-walking" style="display:none;">
-        <p class="entertainment-content-text py-2" id="walking">Nothing here yet!</p>
-      </div>
 
 
 
-    </section>
+      
+
+
 
       <div class="modal is active" id="modal modal-title">
         <div class="modal-background"></div>
@@ -154,7 +164,7 @@
           </header>
           <section class="modal-card-body form-items">
             <div class="control py-1">
-                <input class="input" type="text" id="beginPoint" placeholder="Address of Origin">
+                <input class="input" type="text" id="beginPoint" placeholder="City of Origin">
             </div>
             <div class="control py-1">
                 <input class="input" type="text" id="endPoint" placeholder="Destination">
